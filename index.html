@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snuger - Connect Anonymously Nearby</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="container">
+        <div class="hero-section">
+            <div class="logo-container">
+                <img src="./logo.png" alt="Snuger Logo" class="logo-img">
+                <div class="logo">Snuger</div>
+            </div>
+            <div class="tagline">Connect Anonymously with Your Neighborhood</div>
+            <div class="sub-tagline">Safe • Private • Local</div>
+            
+            <div class="launch-countdown">
+                <h2>Launching In</h2>
+                <div class="countdown-wrapper">
+                    <div class="countdown-box">
+                        <span id="days">000</span>
+                        <span class="label">Days</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="hours">00</span>
+                        <span class="label">Hours</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="minutes">00</span>
+                        <span class="label">Minutes</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="seconds">00</span>
+                        <span class="label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2 class="section-title"><span>Why Choose Snuger?</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <div class="icon">🌍</div>
+                    </div>
+                    <h3>Smart Location</h3>
+                    <p>Connect within your chosen radius from 1-10km. Control who can see you and who you want to meet.</p>
+                    <ul class="feature-list">
+                        <li>Custom radius setting</li>
+                        <li>Location privacy controls</li>
+                        <li>Neighborhood discovery</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <div class="icon">🔒</div>
+                    </div>
+                    <h3>Total Privacy</h3>
+                    <p>Your identity remains completely anonymous. No personal info required, just connect and chat.</p>
+                    <ul class="feature-list">
+                        <li>No registration needed</li>
+                        <li>End-to-end encryption</li>
+                        <li>Auto message deletion</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <div class="icon">🤝</div>
+                    </div>
+                    <h3>Local Community</h3>
+                    <p>Join local groups, events, and discussions. Build real connections in your area.</p>
+                    <ul class="feature-list">
+                        <li>Interest-based groups</li>
+                        <li>Local event discovery</li>
+                        <li>Community forums</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <div class="icon">🛡️</div>
+                    </div>
+                    <h3>Safety First</h3>
+                    <p>Advanced safety features to ensure a secure and comfortable experience.</p>
+                    <ul class="feature-list">
+                        <li>AI content moderation</li>
+                        <li>Block & report system</li>
+                        <li>Safety guidelines</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <div class="icon">💬</div>
+                    </div>
+                    <h3>Rich Messaging</h3>
+                    <p>Express yourself with our feature-rich chat system designed for meaningful conversations.</p>
+                    <ul class="feature-list">
+                        <li>Voice messages</li>
+                        <li>Image sharing</li>
+                        <li>Disappearing messages</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <div class="icon">🎯</div>
+                    </div>
+                    <h3>Smart Matching</h3>
+                    <p>Find like-minded people based on shared interests and preferences.</p>
+                    <ul class="feature-list">
+                        <li>Interest matching</li>
+                        <li>Activity suggestions</li>
+                        <li>Compatibility scoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter">
+            <div class="newsletter-content">
+                <h2>Be the First to Know</h2>
+                <p>Get early access and exclusive updates</p>
+                <form id="notify-form">
+                    <div class="input-group">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Get Early Access</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
