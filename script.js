@@ -19,14 +19,7 @@ tl.from(".logo-container", {
     opacity: 0.8,
     duration: 1,
     ease: "power2.out"
-}, "-=0.5")
-.from(".countdown-box", {
-    scale: 0,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.2,
-    ease: "back.out(1.7)"
-});
+}, "-=0.5");
 
 // Animate feature cards
 const featureCards = gsap.utils.toArray('.feature-card');
