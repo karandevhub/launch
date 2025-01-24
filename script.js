@@ -97,7 +97,31 @@ circles.forEach((circle, index) => {
     });
 });
 
-// Countdown Timer
+// Add this function for smooth number animation
+function animateValue(element, start, end, duration) {
+    const range = end - start;
+    const startTime = performance.now();
+    
+    function updateNumber(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const current = Math.floor(start + (range * progress));
+        if (element.id === 'days') {
+            element.textContent = current < 100 ? current : current.toString().padStart(3, '0');
+        } else {
+            element.textContent = current.toString().padStart(2, '0');
+        }
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+        }
+    }
+    
+    requestAnimationFrame(updateNumber);
+}
+
+// Update the countdown function
 function updateCountdown() {
     const launchDate = new Date("February 7, 2025 00:00:00").getTime();
     const now = new Date().getTime();
@@ -108,16 +132,44 @@ function updateCountdown() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Remove leading zeros for days if it's less than 100
-    document.getElementById("days").innerHTML = days < 100 ? days : days.toString().padStart(3, '0');
-    document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-    document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-    document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+    // Get current values
+    const currentDays = parseInt(document.getElementById("days").textContent) || 0;
+    const currentHours = parseInt(document.getElementById("hours").textContent) || 0;
+    const currentMinutes = parseInt(document.getElementById("minutes").textContent) || 0;
+    const currentSeconds = parseInt(document.getElementById("seconds").textContent) || 0;
+
+    // Animate each value if it's different
+    if (currentDays !== days) {
+        animateValue(document.getElementById("days"), currentDays, days, 500);
+    }
+    if (currentHours !== hours) {
+        animateValue(document.getElementById("hours"), currentHours, hours, 500);
+    }
+    if (currentMinutes !== minutes) {
+        animateValue(document.getElementById("minutes"), currentMinutes, minutes, 500);
+    }
+    if (currentSeconds !== seconds) {
+        animateValue(document.getElementById("seconds"), currentSeconds, seconds, 500);
+    }
 }
 
-// Update countdown every second
-setInterval(updateCountdown, 1000);
-updateCountdown();
+// Add this after the countdown box animation
+// Start the countdown
+updateCountdown(); // Initial call
+setInterval(updateCountdown, 1000); // Update every second
+
+// Add a subtle pulse animation to countdown boxes
+gsap.to(".countdown-box", {
+    scale: 1.05,
+    duration: 0.5,
+    ease: "power2.inOut",
+    yoyo: true,
+    repeat: -1,
+    stagger: {
+        each: 0.2,
+        repeat: -1
+    }
+});
 
 // Newsletter form submission with validation
 document.getElementById("notify-form").addEventListener("submit", function(e) {
