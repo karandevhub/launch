@@ -28,6 +28,52 @@ tl.from(".logo-container", {
     ease: "back.out(1.7)"
 });
 
+// Animate feature cards
+const featureCards = gsap.utils.toArray('.feature-card');
+featureCards.forEach((card, i) => {
+    gsap.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100",
+            toggleActions: "play none none reverse"
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        delay: i * 0.2,
+        ease: "power3.out"
+    });
+
+    // Animate icon container
+    gsap.from(card.querySelector('.icon-container'), {
+        scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100",
+        },
+        scale: 0,
+        rotation: -45,
+        duration: 1,
+        delay: i * 0.2 + 0.3,
+        ease: "back.out(1.7)"
+    });
+
+    // Animate list items
+    const listItems = card.querySelectorAll('.feature-list li');
+    listItems.forEach((item, index) => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top bottom-=100",
+            },
+            x: -20,
+            opacity: 0,
+            duration: 0.5,
+            delay: i * 0.2 + 0.5 + (index * 0.1),
+            ease: "power2.out"
+        });
+    });
+});
+
 // Animate newsletter section
 gsap.from(".newsletter", {
     scrollTrigger: {
