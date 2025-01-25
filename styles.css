@@ -249,21 +249,27 @@ body {
 }
 
 .newsletter {
-    /* background: var(--card-bg); */
-    /* border-radius: 24px; */
-    /* padding: 4rem 2rem; */
     text-align: center;
-    /* border: 1px solid rgba(255, 255, 255, 0.1); */
-    /* margin: 4rem 0; */
+    margin: 4rem 0 1rem 0;
 }
 
 .newsletter-content {
     max-width: 600px;
     margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
 .footer-compliment {
-    padding: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.footer-compliment p {
+    color: var(--text-light);
+    opacity: 0.8;
+    line-height: 1.5;
+    font-size: 0.9rem;
 }
 
 .input-group {
@@ -356,7 +362,7 @@ button:hover {
         flex-direction: column;
     }
 
-    button {
+    .button {
         width: 100%;
     }
 
@@ -408,4 +414,23 @@ button:hover {
     .features-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.form-message {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.form-message.success {
+    color: #4CAF50;
+}
+
+.form-message.error {
+    color: #f44336;
+}
+
+#submit-btn.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
 }

@@ -140,51 +140,60 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Newsletter form submission with validation
-document
-  .getElementById("notify-form")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const email = this.querySelector("input").value;
-
-    if (validateEmail(email)) {
-      try {
-        // Call the API to submit the email
-        const response = await fetch(
-          "https://snugerapi-930311461514.us-central1.run.app/api/userCount/increment",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email }), // Send email in the request body
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          // Perform success animations or actions
-          gsap.to(this.querySelector("button"), {
-            scale: 1.1,
-            duration: 0.2,
-            yoyo: true,
-            repeat: 1,
-          });
-          alert("Thank you! You'll be the first to know when we launch!");
-          this.reset();
-        } else {
-          // Handle server-side errors
-          const errorData = await response.json();
-          alert(`Error: ${errorData.message || "Something went wrong"}`);
-        }
-      } catch (error) {
-        console.error("Error submitting the email:", error);
-        alert("Failed to submit. Please try again later.");
-      }
-    } else {
-      alert("Please enter a valid email address");
+async function handleSubmit(event) {
+    event.preventDefault();
+    
+    const emailInput = document.getElementById('email-input');
+    const submitBtn = document.getElementById('submit-btn');
+    const formMessage = document.getElementById('form-message');
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value)) {
+        formMessage.textContent = "Please enter a valid email address";
+        formMessage.className = "form-message error";
+        return;
     }
-  });
 
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    submitBtn.textContent = 'Submitting...';
+    
+    try {
+        const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdCYQmtJIVmUGH4MnYvAGI3bAfcj8jobq4Unwt0-hksiYW-iw/formResponse';
+        
+        // Create form data
+        const formData = new FormData();
+        formData.append('entry.1581076593', emailInput.value);
+
+        // Submit to Google Form
+        const response = await fetch(formUrl, {
+            method: 'POST',
+            mode: 'no-cors', // Important for Google Forms
+            body: formData
+        });
+
+        // Since mode is no-cors, we can't actually check response.ok
+        // We'll assume success if we get here
+        formMessage.textContent = "Thanks! You're on the list for early access! 🎉";
+        formMessage.className = "form-message success";
+        emailInput.value = '';
+        
+    } catch (error) {
+        formMessage.textContent = "Oops! Something went wrong. Please try again later.";
+        formMessage.className = "form-message error";
+    } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        submitBtn.textContent = 'Get Early Access';
+    }
 }
+
+// Optional: Add email input validation as user types
+document.getElementById('email-input')?.addEventListener('input', (e) => {
+    const formMessage = document.getElementById('form-message');
+    formMessage.textContent = '';
+    formMessage.className = 'form-message';
+});

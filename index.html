@@ -152,11 +152,12 @@
             <div class="newsletter-content">
                 <h2>Be the First to Know</h2>
                 <p>Get early access and exclusive updates</p>
-                <form id="notify-form">
+                <form id="notify-form" onsubmit="handleSubmit(event)">
                     <div class="input-group">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit">Get Early Access</button>
+                        <input type="email" id="email-input" name="entry.1045781291" placeholder="Enter your email" required>
+                        <button type="submit" id="submit-btn">Get Early Access</button>
                     </div>
+                    <div id="form-message" class="form-message"></div>
                 </form>
             </div>
             <div class="footer-compliment">
