@@ -23,6 +23,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVMCEP3DE2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QVMCEP3DE2');
+    </script>
+
+    
+    <!-- Add sitemap reference -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Add these after your existing meta tags -->
+    <meta property="og:title" content="Snuger - Connect to World Around YOU">
+    <meta property="og:description"
+        content="Connect anonymously with people nearby. Join local communities, chat securely, and discover events in your area with complete privacy.">
+    <meta property="og:image" content="https://snuger.in/logo.png">
+    <meta property="og:url" content="https://snuger.in">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add more specific meta tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
 </head>
 
 <body>
@@ -154,7 +181,8 @@
                 <p>Get early access and exclusive updates</p>
                 <form id="notify-form" onsubmit="handleSubmit(event)">
                     <div class="input-group">
-                        <input type="email" id="email-input" name="entry.1045781291" placeholder="Enter your email" required>
+                        <input type="email" id="email-input" name="entry.1045781291" placeholder="Enter your email"
+                            required>
                         <button type="submit" id="submit-btn">Get Early Access</button>
                     </div>
                     <div id="form-message" class="form-message"></div>
