@@ -82,7 +82,7 @@ gsap.from(".newsletter", {
         toggleActions: "play none none reverse"
     },
     y: 50,
-    opacity: 0,
+    opacity: 1,
     duration: 1
 });
 
@@ -127,20 +127,41 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Newsletter form submission with validation
-document.getElementById("notify-form").addEventListener("submit", function(e) {
+document.getElementById("notify-form").addEventListener("submit", async function(e) {
     e.preventDefault();
     const email = this.querySelector("input").value;
     
     if (validateEmail(email)) {
-        // Add your email collection logic here
-        gsap.to(this.querySelector("button"), {
-            scale: 1.1,
-            duration: 0.2,
-            yoyo: true,
-            repeat: 1
-        });
-        alert("Thank you! You'll be the first to know when we launch!");
-        this.reset();
+        try {
+            // Call the API to submit the email
+            const response = await fetch("https://snugerapi-930311461514.us-central1.run.app/api/userCount/increment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email }) // Send email in the request body
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                // Perform success animations or actions
+                gsap.to(this.querySelector("button"), {
+                    scale: 1.1,
+                    duration: 0.2,
+                    yoyo: true,
+                    repeat: 1
+                });
+                alert("Thank you! You'll be the first to know when we launch!");
+                this.reset();
+            } else {
+                // Handle server-side errors
+                const errorData = await response.json();
+                alert(`Error: ${errorData.message || "Something went wrong"}`);
+            }
+        } catch (error) {
+            console.error("Error submitting the email:", error);
+            alert("Failed to submit. Please try again later.");
+        }
     } else {
         alert("Please enter a valid email address");
     }
