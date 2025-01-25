@@ -262,7 +262,7 @@ body {
     margin: 0 auto;
 }
 
-.footer-compliment{
+.footer-compliment {
     padding: 10px;
 }
 
@@ -408,4 +408,4 @@ button:hover {
     .features-grid {
         grid-template-columns: 1fr;
     }
-} 
+}
