@@ -161,11 +161,11 @@ async function handleSubmit(event) {
     submitBtn.textContent = 'Submitting...';
     
     try {
-        const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdCYQmtJIVmUGH4MnYvAGI3bAfcj8jobq4Unwt0-hksiYW-iw/formResponse';
+        const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSerCs7w1JBOvnfeqqKudlM15VqDfG7a2-vHX3pjDUoG_C4Iiw/formResponse';
         
         // Create form data
         const formData = new FormData();
-        formData.append('entry.1581076593', emailInput.value);
+        formData.append('entry.88663040', emailInput.value);
 
         // Submit to Google Form
         const response = await fetch(formUrl, {
