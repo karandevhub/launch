@@ -50,6 +50,16 @@
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="7 days">
     <meta name="language" content="English">
+
+    <!-- Add these meta tags after your existing meta tags -->
+    <meta property="og:image" content="https://snuger.in/logo.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:type" content="image/png">
+    
+    <!-- Add Twitter card meta tags -->
+    <meta name="twitter:image" content="https://snuger.in/logo.png">
+    <meta name="twitter:image:alt" content="Snuger Logo">
 </head>
 
 <body>
@@ -57,7 +67,7 @@
     <div class="container">
         <main class="hero-section">
             <div class="logo-container">
-                <img src="./logo.png" alt="Snuger Logo" class="logo-img">
+                <img src="./logo.png" alt="Snuger - Anonymous Local Social Network" class="logo-img">
                 <div class="logo">Snuger</div>
             </div>
             <div class="tagline">Connect to World Around YOU</div>
@@ -206,11 +216,15 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": "Organization",
         "name": "Snuger",
+        "url": "https://snuger.in",
+        "logo": "https://snuger.in/logo.png",
+        "image": "https://snuger.in/logo.png",
+        "description": "Connect anonymously with people nearby. Join local communities, chat securely, and discover events in your area with complete privacy.",
+        "sameAs": [],
         "applicationCategory": "CommunicationApplication",
         "operatingSystem": "Android, iOS",
-        "description": "Connect anonymously with people nearby. Join local communities, chat securely, and discover events in your area with complete privacy.",
         "offers": {
             "@type": "Offer",
             "price": "0",
