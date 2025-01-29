@@ -350,6 +350,13 @@ button:hover {
     border-radius: 50%;
     opacity: 0.1;
 }
+small{
+    font-size: x-small;
+    color: white;
+}
+a{
+    color: white;
+}
 
 @media (max-width: 768px) {
     .container {
