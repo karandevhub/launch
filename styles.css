@@ -7,9 +7,13 @@
 :root {
     --primary-color: #00DC82;
     --secondary-color: #00B4D8;
+    --accent-color: #7B61FF;
     --bg-dark: #0A1128;
     --text-light: #E9ECEF;
-    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-bg: rgba(13, 21, 43, 0.95);
+    --gradient-1: linear-gradient(135deg, #00DC82 0%, #00B4D8 100%);
+    --gradient-2: linear-gradient(45deg, #7B61FF 0%, #00DC82 100%);
+    --gradient-glow: 0 0 25px rgba(0, 220, 130, 0.3);
 }
 
 body {
@@ -68,6 +72,7 @@ body {
     margin-bottom: 1rem;
     background-clip: text;
     -webkit-background-clip: text;
+    text-shadow: 0 0 30px rgba(0, 220, 130, 0.3);
 }
 
 .tagline {
@@ -97,29 +102,40 @@ body {
 
 .launch-countdown {
     margin: 4rem 0;
+    position: relative;
+    z-index: 1;
 }
 
 .countdown-wrapper {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
     margin: 2rem auto;
     max-width: 100%;
     padding: 0 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 .countdown-box {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(13, 21, 43, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
     padding: 1.5rem;
     border-radius: 20px;
-    backdrop-filter: blur(10px);
-    min-width: 120px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    min-width: 110px;
+}
+
+.countdown-box:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 220, 130, 0.3);
 }
 
 .countdown-box span {
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: 700;
     display: block;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -156,8 +172,9 @@ body {
     transform: translateX(-50%);
     width: 50px;
     height: 4px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    background: var(--gradient-1);
     border-radius: 2px;
+    box-shadow: var(--gradient-glow);
 }
 
 .features-grid {
@@ -168,13 +185,21 @@ body {
 
 .feature-card {
     background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
     padding: 3rem 2rem;
     border-radius: 24px;
     text-align: left;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--gradient-glow);
+    border-color: rgba(0, 220, 130, 0.3);
 }
 
 .feature-card h3 {
@@ -212,11 +237,16 @@ body {
     content: '→';
     position: absolute;
     left: 0;
-    color: var(--primary-color);
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .icon-container {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 220, 130, 0.1);
+    border: 2px solid transparent;
+    background-clip: padding-box;
     width: 60px;
     height: 60px;
     border-radius: 16px;
@@ -225,21 +255,19 @@ body {
     justify-content: center;
     margin-bottom: 1rem;
     position: relative;
-    overflow: hidden;
 }
 
-.icon-container::before {
+.icon-container::after {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    opacity: 0.2;
-    transition: opacity 0.3s ease;
-}
-
-.feature-card:hover .icon-container::before {
-    opacity: 0.4;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-1);
+    border-radius: 18px;
+    z-index: -1;
+    opacity: 0.3;
 }
 
 .icon {
@@ -255,6 +283,16 @@ body {
     text-align: center;
     /* border: 1px solid rgba(255, 255, 255, 0.1); */
     /* margin: 4rem 0; */
+}
+
+.newsletter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-1);
 }
 
 .newsletter-content {
@@ -275,28 +313,52 @@ body {
 input {
     flex: 1;
     padding: 1rem 1.5rem;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
     color: white;
     font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 220, 130, 0.2);
+    outline: none;
 }
 
 button {
     padding: 1rem 2rem;
     border: none;
     border-radius: 50px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    background: var(--gradient-1);
+    box-shadow: var(--gradient-glow);
     color: var(--bg-dark);
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
     font-size: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 220, 130, 0.3);
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-2);
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+button:hover::before {
+    opacity: 1;
 }
 
 .floating-circles {
@@ -311,9 +373,10 @@ button:hover {
 
 .circle {
     position: absolute;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    background: var(--gradient-2);
     border-radius: 50%;
-    opacity: 0.1;
+    opacity: 0.05;
+    filter: blur(50px);
 }
 small{
     font-size: x-small;
@@ -343,16 +406,15 @@ a{
 
     .countdown-wrapper {
         gap: 0.75rem;
-        padding: 0 0.5rem;
     }
 
     .countdown-box {
-        min-width: 70px;
-        padding: 1rem 0.5rem;
+        min-width: 80px;
+        padding: 1rem;
     }
 
     .countdown-box span {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .countdown-box .label {
@@ -373,6 +435,7 @@ a{
 
     .feature-card {
         padding: 2rem 1.5rem;
+        backdrop-filter: blur(10px);
     }
 
     .feature-list li {
@@ -391,16 +454,15 @@ a{
 
     .countdown-wrapper {
         gap: 0.5rem;
-        padding: 0 0.25rem;
     }
 
     .countdown-box {
-        min-width: 65px;
-        padding: 0.75rem 0.25rem;
+        min-width: 70px;
+        padding: 0.75rem;
     }
 
     .countdown-box span {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .section-title {
