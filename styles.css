@@ -277,16 +277,12 @@ body {
 }
 
 .newsletter {
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-    border-radius: 24px;
-    padding: 4rem 2rem;
+    /* background: var(--card-bg); */
+    /* border-radius: 24px; */
+    /* padding: 4rem 2rem; */
     text-align: center;
-    margin: 4rem 0;
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+    /* margin: 4rem 0; */
 }
 
 .newsletter::before {
@@ -302,6 +298,10 @@ body {
 .newsletter-content {
     max-width: 600px;
     margin: 0 auto;
+}
+
+.footer-compliment{
+    padding: 10px;
 }
 
 .input-group {
@@ -377,6 +377,13 @@ button:hover::before {
     border-radius: 50%;
     opacity: 0.05;
     filter: blur(50px);
+}
+small{
+    font-size: x-small;
+    color: white;
+}
+a{
+    color: white;
 }
 
 @media (max-width: 768px) {
