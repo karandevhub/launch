@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Snuger Account</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0A1128;
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .warning {
+            background-color: rgba(255, 0, 0, 0.1);
+            border-left: 4px solid #ff4444;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #90caf9;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .error {
+            color: #ff4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        #confirmationModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #0A1128;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+        }
+
+        .cancel-btn {
+            background-color: #6c757d;
+        }
+
+        .cancel-btn:hover {
+            background-color: #5a6268;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Account</h1>
+        
+        <div class="warning">
+            ⚠️ Warning: This action is permanent and cannot be undone. All your data will be permanently deleted.
+        </div>
+
+        <form id="deleteForm">
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+                <div class="error" id="passwordError">Please enter your password</div>
+            </div>
+
+            <button type="submit">Delete My Account</button>
+        </form>
+    </div>
+
+    <div id="confirmationModal">
+        <div class="modal-content">
+            <h2>Are you sure?</h2>
+            <p>This will permanently delete your account and all associated data. This action cannot be undone.</p>
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="cancelDelete">Cancel</button>
+                <button id="confirmDelete">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('deleteForm');
+        const modal = document.getElementById('confirmationModal');
+        const cancelBtn = document.getElementById('cancelDelete');
+        const confirmBtn = document.getElementById('confirmDelete');
+        const passwordInput = document.getElementById('password');
+        const passwordError = document.getElementById('passwordError');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            passwordError.style.display = 'none';
+            
+            let isValid = true;
+
+            // Validate password
+            if (!passwordInput.value.trim()) {
+                passwordError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                modal.style.display = 'flex';
+            }
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            // Here you would typically make an API call to delete the account
+            // For demo purposes, we'll just show an alert
+            alert('Account deletion request submitted. You will be logged out shortly.');
+            modal.style.display = 'none';
+            form.reset();
+        });
+
+        // Close modal when clicking outside
+// Close modal and handle account deletion
+modal.addEventListener('click', async (e) => {
+    if (e.target === modal) {
+        try {
+            const password = passwordInput.value.trim();
+            
+            // Show loading state
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Deleting...';
+            
+            // Make API call to delete account
+            const response = await fetch('https://snugerapi-930311461514.us-central1.run.app/user/delete', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    password: password
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to delete account');
+            }
+
+            // Handle successful deletion
+            modal.style.display = 'none';
+            alert('Account successfully deleted. You will be redirected to the home page.');
+            
+            // Redirect to home page after successful deletion
+            window.location.href = '/';
+
+        } catch (error) {
+            // Handle errors
+            alert(`Error: ${error.message}`);
+            
+            // Reset button state
+            confirmBtn.disabled = false;
+            confirmBtn.textContent = 'Yes, Delete';
+        }
+    }
+});
+    </script>
+</body>
+</html>
