@@ -5,121 +5,134 @@ gsap.registerPlugin(ScrollTrigger);
 const tl = gsap.timeline();
 
 tl.from(".logo-container", {
-    y: -100,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
+  y: -100,
+  opacity: 0,
+  duration: 1,
+  ease: "power4.out",
 })
-.to(".tagline", {
+  .to(".tagline", {
     opacity: 1,
     duration: 1,
-    ease: "power2.out"
-})
-.to(".sub-tagline", {
-    opacity: 0.8,
-    duration: 1,
-    ease: "power2.out"
-}, "-=0.5")
-.from(".countdown-box", {
+    ease: "power2.out",
+  })
+  .to(
+    ".sub-tagline",
+    {
+      opacity: 0.8,
+      duration: 1,
+      ease: "power2.out",
+    },
+    "-=0.5"
+  )
+  .from(".countdown-box", {
     scale: 0,
     opacity: 0,
     duration: 0.5,
     stagger: 0.2,
-    ease: "back.out(1.7)"
-});
+    ease: "back.out(1.7)",
+  });
 
 // Animate feature cards
-const featureCards = gsap.utils.toArray('.feature-card');
+const featureCards = gsap.utils.toArray(".feature-card");
 featureCards.forEach((card, i) => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=100",
-            toggleActions: "play none none reverse"
-        },
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        delay: i * 0.2,
-        ease: "power3.out"
-    });
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: "top bottom-=100",
+      toggleActions: "play none none reverse",
+    },
+    y: 60,
+    opacity: 0,
+    duration: 0.8,
+    delay: i * 0.2,
+    ease: "power3.out",
+  });
 
-    // Animate icon container
-    gsap.from(card.querySelector('.icon-container'), {
-        scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=100",
-        },
-        scale: 0,
-        rotation: -45,
-        duration: 1,
-        delay: i * 0.2 + 0.3,
-        ease: "back.out(1.7)"
-    });
+  // Animate icon container
+  gsap.from(card.querySelector(".icon-container"), {
+    scrollTrigger: {
+      trigger: card,
+      start: "top bottom-=100",
+    },
+    scale: 0,
+    rotation: -45,
+    duration: 1,
+    delay: i * 0.2 + 0.3,
+    ease: "back.out(1.7)",
+  });
 
-    // Animate list items
-    const listItems = card.querySelectorAll('.feature-list li');
-    listItems.forEach((item, index) => {
-        gsap.from(item, {
-            scrollTrigger: {
-                trigger: card,
-                start: "top bottom-=100",
-            },
-            x: -20,
-            opacity: 0,
-            duration: 0.5,
-            delay: i * 0.2 + 0.5 + (index * 0.1),
-            ease: "power2.out"
-        });
+  // Animate list items
+  const listItems = card.querySelectorAll(".feature-list li");
+  listItems.forEach((item, index) => {
+    gsap.from(item, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top bottom-=100",
+      },
+      x: -20,
+      opacity: 0,
+      duration: 0.5,
+      delay: i * 0.2 + 0.5 + index * 0.1,
+      ease: "power2.out",
     });
+  });
 });
 
 // Animate newsletter section
 gsap.from(".newsletter", {
-    scrollTrigger: {
-        trigger: ".newsletter",
-        start: "top center+=100",
-        toggleActions: "play none none reverse"
-    },
-    y: 50,
-    opacity: 1,
-    duration: 1
+  scrollTrigger: {
+    trigger: ".newsletter",
+    start: "top center+=100",
+    toggleActions: "play none none reverse",
+  },
+  y: 50,
+  opacity: 1,
+  duration: 1,
 });
 
 // Animate floating circles
-const circles = document.querySelectorAll('.circle');
+const circles = document.querySelectorAll(".circle");
 circles.forEach((circle, index) => {
-    const size = Math.random() * 300 + 100;
-    circle.style.width = `${size}px`;
-    circle.style.height = `${size}px`;
-    
-    gsap.to(circle, {
-        x: "random(-50, 50)",
-        y: "random(-50, 50)",
-        duration: "random(15, 25)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: index * 2
-    });
+  const size = Math.random() * 300 + 100;
+  circle.style.width = `${size}px`;
+  circle.style.height = `${size}px`;
+
+  gsap.to(circle, {
+    x: "random(-50, 50)",
+    y: "random(-50, 50)",
+    duration: "random(15, 25)",
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+    delay: index * 2,
+  });
 });
 
 // Countdown Timer
 function updateCountdown() {
-    const launchDate = new Date("February 7, 2025 00:00:00").getTime();
-    const now = new Date().getTime();
-    const distance = launchDate - now;
+  const launchDate = new Date("February 7, 2025 00:00:00").getTime();
+  const now = new Date().getTime();
+  const distance = launchDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Remove leading zeros for days if it's less than 100
-    document.getElementById("days").innerHTML = days < 100 ? days : days.toString().padStart(3, '0');
-    document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-    document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-    document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+  // Remove leading zeros for days if it's less than 100
+  document.getElementById("days").innerHTML =
+    days < 100 ? days : days.toString().padStart(3, "0");
+  document.getElementById("hours").innerHTML = hours
+    .toString()
+    .padStart(2, "0");
+  document.getElementById("minutes").innerHTML = minutes
+    .toString()
+    .padStart(2, "0");
+  document.getElementById("seconds").innerHTML = seconds
+    .toString()
+    .padStart(2, "0");
 }
 
 // Update countdown every second
@@ -127,46 +140,60 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Newsletter form submission with validation
-document.getElementById("notify-form").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const email = this.querySelector("input").value;
+async function handleSubmit(event) {
+    event.preventDefault();
     
-    if (validateEmail(email)) {
-        try {
-            // Call the API to submit the email
-            const response = await fetch("https://snugerapi-930311461514.us-central1.run.app/api/userCount/increment", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email }) // Send email in the request body
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                // Perform success animations or actions
-                gsap.to(this.querySelector("button"), {
-                    scale: 1.1,
-                    duration: 0.2,
-                    yoyo: true,
-                    repeat: 1
-                });
-                alert("Thank you! You'll be the first to know when we launch!");
-                this.reset();
-            } else {
-                // Handle server-side errors
-                const errorData = await response.json();
-                alert(`Error: ${errorData.message || "Something went wrong"}`);
-            }
-        } catch (error) {
-            console.error("Error submitting the email:", error);
-            alert("Failed to submit. Please try again later.");
-        }
-    } else {
-        alert("Please enter a valid email address");
+    const emailInput = document.getElementById('email-input');
+    const submitBtn = document.getElementById('submit-btn');
+    const formMessage = document.getElementById('form-message');
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value)) {
+        formMessage.textContent = "Please enter a valid email address";
+        formMessage.className = "form-message error";
+        return;
     }
-});
 
-function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-} 
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    submitBtn.textContent = 'Submitting...';
+    
+    try {
+        const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSerCs7w1JBOvnfeqqKudlM15VqDfG7a2-vHX3pjDUoG_C4Iiw/formResponse';
+        
+        // Create form data
+        const formData = new FormData();
+        formData.append('entry.88663040', emailInput.value);
+
+        // Submit to Google Form
+        const response = await fetch(formUrl, {
+            method: 'POST',
+            mode: 'no-cors', // Important for Google Forms
+            body: formData
+        });
+
+        // Since mode is no-cors, we can't actually check response.ok
+        // We'll assume success if we get here
+        formMessage.textContent = "Thanks! You're on the list for early access! 🎉";
+        formMessage.className = "form-message success";
+        emailInput.value = '';
+        
+    } catch (error) {
+        formMessage.textContent = "Oops! Something went wrong. Please try again later.";
+        formMessage.className = "form-message error";
+    } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        submitBtn.textContent = 'Get Early Access';
+    }
+}
+
+// Optional: Add email input validation as user types
+document.getElementById('email-input')?.addEventListener('input', (e) => {
+    const formMessage = document.getElementById('form-message');
+    formMessage.textContent = '';
+    formMessage.className = 'form-message';
+});

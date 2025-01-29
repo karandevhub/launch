@@ -1,31 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snuger - Connect Anonymously Nearby</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Snuger - Connect anonymously with people nearby. Join local communities, chat securely, and discover events in your area with complete privacy.">
+    <meta name="keywords"
+        content="anonymous chat, local community, private messaging, nearby connections, secure chat app">
+    <meta name="author" content="Snuger">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://snuger.in/">
+
+    <title>Snuger - Connect to World Around YOU</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVMCEP3DE2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QVMCEP3DE2');
+    </script>
+
+
+    <!-- Add sitemap reference -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Add these after your existing meta tags -->
+    <meta property="og:title" content="Snuger - Connect to World Around YOU">
+    <meta property="og:description"
+        content="Connect anonymously with people nearby. Join local communities, chat securely, and discover events in your area with complete privacy.">
+    <meta property="og:image" content="https://snuger.in/logo.png">
+    <meta property="og:url" content="https://snuger.in">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add more specific meta tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
+
+    <!-- Add these meta tags after your existing meta tags -->
+    <meta property="og:image" content="https://snuger.in/logo.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:type" content="image/png">
+    
+    <!-- Add Twitter card meta tags -->
+    <meta name="twitter:image" content="https://snuger.in/logo.png">
+    <meta name="twitter:image:alt" content="Snuger Logo">
 </head>
+
 <body>
     <div class="noise-overlay"></div>
     <div class="container">
-        <div class="hero-section">
+        <main class="hero-section">
             <div class="logo-container">
-                <img src="./logo.png" alt="Snuger Logo" class="logo-img">
+                <img src="./logo.png" alt="Snuger - Anonymous Local Social Network" class="logo-img">
                 <div class="logo">Snuger</div>
             </div>
             <div class="tagline">Connect to World Around YOU</div>
             <div class="sub-tagline">
                 <!-- Let's get the Shit to NEXT LEVEL. Go nuts.  -->
-                Let's get the 
-                <span class="highlight">Shit</span> to  
-                <span class="highlight">NEXT LEVEL.</span>  Go 
-                <span class="highlight">NUTS</span> 
+                Let's get the
+                <span class="highlight">Shit</span> to
+                <span class="highlight">NEXT LEVEL.</span> Go
+                <span class="highlight">NUTS</span>
             </div>
-            
+
             <div class="launch-countdown">
                 <h2>Launching In</h2>
                 <div class="countdown-wrapper">
@@ -47,7 +100,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
 
         <!-- <div class="features">
             <h2 class="section-title"><span>Why Choose Snuger?</span></h2>
@@ -136,16 +189,18 @@
             <div class="newsletter-content">
                 <h2>Be the First to Know</h2>
                 <p>Get early access and exclusive updates</p>
-                <form id="notify-form">
+                <form id="notify-form" onsubmit="handleSubmit(event)">
                     <div class="input-group">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit">Get Early Access</button>
+                        <input type="email" id="email-input" name="entry.1045781291" placeholder="Enter your email"
+                            required>
+                        <button type="submit" id="submit-btn">Get Early Access</button>
                     </div>
+                    <div id="form-message" class="form-message"></div>
                 </form>
             </div>
             <div class="footer-compliment">
                 <p>Made with ❤️ for fun. <br>
-                    By- The Snugers😎</p>
+                    By - The Snugers😎</p>
                     <div><small><a href="/privacy_policy.html">PRIVACY</a> • <a href="./term_of_use.html"> TERMS</a> • ©2025 <a href="#"> SNUGER, INC.</a></small></div>
             </div>
         </div>
@@ -158,6 +213,28 @@
         <div class="circle"></div>
     </div>
 
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Snuger",
+        "url": "https://snuger.in",
+        "logo": "https://snuger.in/logo.png",
+        "image": "https://snuger.in/logo.png",
+        "icon": "https://snuger.in/favicon.ico",
+        "description": "Connect anonymously with people nearby. Join local communities, chat securely, and discover events in your area with complete privacy.",
+        "sameAs": [],
+        "applicationCategory": "CommunicationApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
     <script src="script.js"></script>
 </body>
+
 </html>
