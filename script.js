@@ -110,7 +110,7 @@ circles.forEach((circle, index) => {
 
 // Countdown Timer
 function updateCountdown() {
-  const launchDate = new Date("February 7, 2025 00:00:00").getTime();
+  const launchDate = new Date("February 14, 2025 00:00:00").getTime();
   const now = new Date().getTime();
   const distance = launchDate - now;
 
