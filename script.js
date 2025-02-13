@@ -109,35 +109,35 @@ circles.forEach((circle, index) => {
 });
 
 // Countdown Timer
-function updateCountdown() {
-  const launchDate = new Date("February 14, 2025 00:00:00").getTime();
-  const now = new Date().getTime();
-  const distance = launchDate - now;
+// function updateCountdown() {
+//   const launchDate = new Date("February 14, 2025 00:00:00").getTime();
+//   const now = new Date().getTime();
+//   const distance = launchDate - now;
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//   const hours = Math.floor(
+//     (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+//   );
+//   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // Remove leading zeros for days if it's less than 100
-  document.getElementById("days").innerHTML =
-    days < 100 ? days : days.toString().padStart(3, "0");
-  document.getElementById("hours").innerHTML = hours
-    .toString()
-    .padStart(2, "0");
-  document.getElementById("minutes").innerHTML = minutes
-    .toString()
-    .padStart(2, "0");
-  document.getElementById("seconds").innerHTML = seconds
-    .toString()
-    .padStart(2, "0");
-}
+//   // Remove leading zeros for days if it's less than 100
+//   document.getElementById("days").innerHTML =
+//     days < 100 ? days : days.toString().padStart(3, "0");
+//   document.getElementById("hours").innerHTML = hours
+//     .toString()
+//     .padStart(2, "0");
+//   document.getElementById("minutes").innerHTML = minutes
+//     .toString()
+//     .padStart(2, "0");
+//   document.getElementById("seconds").innerHTML = seconds
+//     .toString()
+//     .padStart(2, "0");
+// }
 
-// Update countdown every second
-setInterval(updateCountdown, 1000);
-updateCountdown();
+// // Update countdown every second
+// setInterval(updateCountdown, 1000);
+// updateCountdown();
 
 // Newsletter form submission with validation
 async function handleSubmit(event) {
